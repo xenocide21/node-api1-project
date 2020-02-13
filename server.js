@@ -25,6 +25,13 @@ server.get('/api/users/:id', (req, res) => {
         .then(user => {res.status(200).json(user)})
         .catch(err =>{res.status(404).send({ message: "The user with the specified ID does not exist." }, err)})
 })
+//Post user to server
+server.post('/api/users', (req, res) => {
+    const user = req.body;
+    db.insert(user)
+        .then( users => {res.status(201).json(users)})
+        .catch( err => {res.status(500).send('Could not add user')})
+})
 //Edit user
 server.put('/api/users/:id', (req, res) =>{
     const id = req.params.id
