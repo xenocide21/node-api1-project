@@ -30,7 +30,7 @@ server.post('/api/users', (req, res) => {
     const user = req.body;
     db.insert(user)
         .then( users => {res.status(201).json(users)})
-        .catch( err => {res.status(500).send('Could not add user')})
+        .catch( err => {res.status(500).send('Could not add user', err)})
 })
 //Edit user
 server.put('/api/users/:id', (req, res) =>{
